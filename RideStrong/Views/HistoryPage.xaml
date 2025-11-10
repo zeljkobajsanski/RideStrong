@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:RideStrong.ViewModels"
+             xmlns:models="clr-namespace:RideStrong.Models"
+             x:Class="RideStrong.Views.HistoryPage"
+             x:DataType="viewmodels:HistoryViewModel"
+             Style="{StaticResource PageBackgroundStyle}"
+             Title="History">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16" Spacing="24">
+            <!-- Stats Grid -->
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*" RowSpacing="16" ColumnSpacing="16">
+
+                <!-- Total Workouts -->
+                <Border Grid.Row="0" Grid.Column="0"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                        StrokeThickness="1"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Workouts"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                        <Label Text="{Binding TotalWorkouts}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentOrange}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Total Distance -->
+                <Border Grid.Row="0" Grid.Column="1"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                        StrokeThickness="1"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Distance"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                        <Label Text="{Binding TotalDistanceFormatted}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentPurple}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Total Calories -->
+                <Border Grid.Row="1" Grid.Column="0"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                        StrokeThickness="1"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Calories"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                        <Label Text="{Binding TotalCaloriesFormatted}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentBlue}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Total Time -->
+                <Border Grid.Row="1" Grid.Column="1"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                        StrokeThickness="1"
+                        Padding="20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Time"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                        <Label Text="{Binding TotalTimeFormatted}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentYellow}"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Average Speed -->
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                    StrokeThickness="1"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Avg Speed"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                    <Label Text="{Binding AverageSpeedFormatted}"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource AccentGreen}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Workout History List -->
+            <CollectionView ItemsSource="{Binding WorkoutHistory}"
+                            SelectionMode="None"
+                            VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:WorkoutHistory">
+                        <Border BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource DarkCard}}"
+                                Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource DarkBorder}}"
+                                StrokeThickness="1"
+                                Padding="20"
+                                Margin="0,0,0,16">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Border.GestureRecognizers>
+
+                            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+
+                                <!-- Date -->
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding FormattedDate}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+
+                                <!-- Arrow -->
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="›"
+                                       FontSize="24"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                       VerticalOptions="Center"/>
+
+                                <!-- Time -->
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding FormattedTime}"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                                       Margin="0,4,0,12"/>
+
+                                <!-- Metrics -->
+                                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                      ColumnDefinitions="*,*,*,*"
+                                      ColumnSpacing="16">
+
+                                    <!-- Duration -->
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="Duration"
+                                               FontSize="11"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                        <Label Text="{Binding FormattedDuration}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+                                    </VerticalStackLayout>
+
+                                    <!-- Distance -->
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="Distance"
+                                               FontSize="11"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                        <Label Text="{Binding FormattedDistance}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+                                    </VerticalStackLayout>
+
+                                    <!-- Calories -->
+                                    <VerticalStackLayout Grid.Column="2" Spacing="4">
+                                        <Label Text="Calories"
+                                               FontSize="11"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                        <Label Text="{Binding FormattedCalories}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+                                    </VerticalStackLayout>
+
+                                    <!-- Avg Speed -->
+                                    <VerticalStackLayout Grid.Column="3" Spacing="4">
+                                        <Label Text="Avg Speed"
+                                               FontSize="11"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                                        <Label Text="{Binding FormattedAverageSpeed}"
+                                               FontSize="13"
+                                               FontAttributes="Bold"
+                                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

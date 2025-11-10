@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:RideStrong.ViewModels"
+             x:Class="RideStrong.Views.WorkoutPage"
+             x:DataType="viewModels:WorkoutViewModel"
+             Style="{StaticResource PageBackgroundStyle}"
+             Title="Workout">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+            <!-- Main Stats Card -->
+            <Border Style="{StaticResource StatsCardStyle}"
+                    HeightRequest="150"
+                    Padding="24">
+                <VerticalStackLayout Spacing="16" VerticalOptions="Center">
+                    <Label Text="Elapsed Time"
+                           Style="{StaticResource StatsLabelStyle}"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding ElapsedTimeFormatted}"
+                           FontSize="56"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource FitnessOrange}"
+                           HorizontalOptions="Center"
+                           FontFamily="OpenSansSemibold"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Top Metrics Grid (Speed, Cadence, Distance) -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                <!-- Speed -->
+                <Border Grid.Column="0" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Speed" Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="{Binding Speed, StringFormat='{0:F1}'}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource FitnessOrange}"
+                               HorizontalOptions="Center"/>
+                        <Label Text="km/h"
+                               FontSize="12"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Cadence -->
+                <Border Grid.Column="1" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Cadence" Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="{Binding Cadence}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource FitnessPurple}"
+                               HorizontalOptions="Center"/>
+                        <Label Text="RPM"
+                               FontSize="12"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Distance -->
+                <Border Grid.Column="2" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Distance" Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="{Binding Distance, StringFormat='{0:F2}'}"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                               HorizontalOptions="Center"/>
+                        <Label Text="km"
+                               FontSize="12"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Bottom Metrics Grid (Calories, Resistance) -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <!-- Calories -->
+                <Border Grid.Column="0" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Calories" Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="{Binding Calories}"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                               HorizontalOptions="Center"/>
+                        <Label Text="kcal"
+                               FontSize="12"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Resistance -->
+                <Border Grid.Column="1" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Resistance" Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="{Binding Resistance}"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Level"
+                               FontSize="12"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="{Binding StartButtonText}"
+                        BackgroundColor="{StaticResource FitnessOrange}"
+                        TextColor="{StaticResource White}"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        HeightRequest="60"
+                        CornerRadius="12"
+                        Command="{Binding ToggleWorkoutCommand}">
+                </Button>
+
+                <Button Grid.Column="1"
+                        Text="Reset"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        HeightRequest="60"
+                        CornerRadius="12"
+                        Command="{Binding ResetWorkoutCommand}">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="↻"
+                                       FontFamily="OpenSans-Regular"
+                                       Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                       Size="20"/>
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+
+            <!-- Finish Button -->
+            <Button Text="Finish Workout"
+                    BackgroundColor="{StaticResource FitnessPurple}"
+                    TextColor="{StaticResource White}"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    HeightRequest="60"
+                    CornerRadius="12"
+                    Command="{Binding FinishWorkoutCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

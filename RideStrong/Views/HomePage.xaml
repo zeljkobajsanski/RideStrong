@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RideStrong.Views.HomePage"
+             Style="{StaticResource PageBackgroundStyle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,40,30,20" Spacing="0">
+
+            <!-- Header Section -->
+            <Label Text="Ride Strong"
+                   Style="{StaticResource TitleTextStyle}"/>
+            <Label Text="Your personal indoor bike companion"
+                   Style="{StaticResource SubtitleTextStyle}"
+                   Margin="0,8,0,0"/>
+
+            <!-- Start New Workout Button -->
+            <Button Text="▶  Start New Workout"
+                    BackgroundColor="{StaticResource FitnessOrange}"
+                    TextColor="{StaticResource White}"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    HeightRequest="60"
+                    CornerRadius="12"
+                    Margin="0,32,0,0"
+                    Clicked="OnStartWorkoutClicked"/>
+
+            <!-- Latest Workout Card -->
+            <Border Style="{StaticResource FeatureCardStyle}"
+                    Margin="0,32,0,0">
+                <VerticalStackLayout Spacing="16">
+                    <!-- Card Title -->
+                    <Label Text="Latest Workout"
+                           Style="{StaticResource CardTitleStyle}"/>
+
+                    <!-- Date and Duration -->
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Date"
+                                   Style="{StaticResource StatsLabelStyle}"/>
+                            <Label Text="11/10/2025"
+                                   Style="{StaticResource CardTitleStyle}"
+                                   FontSize="16"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="4">
+                            <Label Text="Duration"
+                                   Style="{StaticResource StatsLabelStyle}"/>
+                            <Label Text="0m 4s"
+                                   Style="{StaticResource CardTitleStyle}"
+                                   FontSize="16"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Metrics Row -->
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                        <!-- Last Distance -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8" HorizontalOptions="Center">
+                            <Label Text="📈"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource FitnessOrange}"/>
+                            <Label Text="Distance"
+                                   Style="{StaticResource StatsLabelStyle}"
+                                   FontSize="11"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="0.0 km"
+                                   Style="{StaticResource CardTitleStyle}"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+
+                        <!-- Last Calories -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="8" HorizontalOptions="Center">
+                            <Label Text="🔥"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource FitnessPurple}"/>
+                            <Label Text="Calories"
+                                   Style="{StaticResource StatsLabelStyle}"
+                                   FontSize="11"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="0 cal"
+                                   Style="{StaticResource CardTitleStyle}"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+
+                        <!-- Last Avg Speed -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8" HorizontalOptions="Center">
+                            <Label Text="⚡"
+                                   FontSize="20"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource FitnessBlue}"/>
+                            <Label Text="Avg Speed"
+                                   Style="{StaticResource StatsLabelStyle}"
+                                   FontSize="11"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="5.5 km/h"
+                                   Style="{StaticResource CardTitleStyle}"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Quick Stats Section -->
+            <Label Text="Quick Stats"
+                   Style="{StaticResource SectionHeaderStyle}"/>
+
+            <Grid ColumnDefinitions="*,16,*" Margin="0,0,0,0">
+                <!-- Total Workouts Card -->
+                <Border Grid.Column="0" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Workouts"
+                               Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="0"
+                               Style="{StaticResource StatsValueStyle}"
+                               TextColor="{StaticResource FitnessOrange}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Total Calories Card -->
+                <Border Grid.Column="2" Style="{StaticResource StatsCardStyle}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Total Calories"
+                               Style="{StaticResource StatsLabelStyle}"/>
+                        <Label Text="0"
+                               Style="{StaticResource StatsValueStyle}"
+                               TextColor="{StaticResource FitnessPurple}"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

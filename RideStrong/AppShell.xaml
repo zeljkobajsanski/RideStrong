@@ -3,12 +3,34 @@
     x:Class="RideStrong.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:RideStrong"
-    Title="RideStrong">
+    xmlns:views="clr-namespace:RideStrong.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="home.svg"
+            ContentTemplate="{DataTemplate views:HomePage}"
+            Route="HomePage" />
+
+        <ShellContent
+            Title="Workout"
+            Icon="workout.svg"
+            ContentTemplate="{DataTemplate views:WorkoutPage}"
+            Route="WorkoutPage" />
+
+        <ShellContent
+            Title="History"
+            Icon="history.svg"
+            ContentTemplate="{DataTemplate views:HistoryPage}"
+            Route="HistoryPage" />
+
+        <ShellContent
+            Title="Settings"
+            Icon="settings.svg"
+            ContentTemplate="{DataTemplate views:SettingsPage}"
+            Route="SettingsPage" />
+    </TabBar>
 
 </Shell>

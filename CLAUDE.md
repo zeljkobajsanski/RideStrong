@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RideStrong is a .NET 9.0 MAUI (Multi-platform App UI) application targeting Android, iOS, macOS Catalyst, and Windows platforms. The project uses a single codebase with platform-specific entry points and configurations.
+RideStrong is an indoor bike workout application built with .NET 9.0 MAUI (Multi-platform App UI). It targets Android, iOS, macOS Catalyst, and Windows platforms, using a single codebase with platform-specific entry points and configurations.
 
 ## Build and Run Commands
 
@@ -106,3 +106,14 @@ The project targets .NET 9.0 with multiple platform-specific frameworks:
 - **Nullable**: Enabled
 - **ImplicitUsings**: Enabled
 - **SingleProject**: True (multi-targeting single project)
+
+## Domain Context
+
+RideStrong is an indoor cycling workout application. When developing features, consider:
+
+- **Workout tracking**: Timer-based sessions, distance, speed, cadence, power metrics
+- **Performance metrics**: Real-time data display during workouts
+- **Workout plans**: Structured training programs, intervals, zones
+- **Data persistence**: Workout history, progress tracking
+- **Device integration**: Potential integration with smart trainers, sensors (Bluetooth, ANT+)
+- **User experience**: Quick access to start workouts, clear metric displays, motivational elements
